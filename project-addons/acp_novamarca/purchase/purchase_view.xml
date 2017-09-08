@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+
+    
+    
+    <record id="view_add_purchase_lines" model="ir.ui.view">
+            <field name="name">add.purchase.lines</field>
+            <field name="model">purchase.order.add</field>
+            <field name="arch" type="xml">
+                <form string="Productos" version="7.0">
+                    <group string="Seleccione plantilla de producto">
+                        <field name="product_tmpl_id" on_change="product_tmpl_change(product_tmpl_id, context)" nolabel="1"/>
+                        <field name="id" invisible="1"/>
+                    </group>
+                    <group>
+                         <button name="add_products" string="Cargar variantes de producto" type="object" class="oe_highlight"/>
+                    </group>                    
+                    <field name="lines">
+						<tree string="Sales Order Lines" editable="bottom">
+							<field name="product_id"/>
+							<field name="qty"/>
+						</tree>
+						
+                    </field> 
+                    <footer>
+                        <button name="add" string="Añadir al pedido" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+    </record>    
+ 
+    <record id="action_add_lines" model="ir.actions.act_window">
+            <field name="name">Anadir lineas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order.add</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_add_purchase_lines"/>
+            <field name="target">new</field>
+    </record>
+
+    <record model="ir.ui.view" id="view_purchase_order_form_acp1">
+        <field name="name">view.purchase.order.form.acp1</field>
+        <field name="model">purchase.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+                <button name="purchase_approve" position="after">
+                   <button name="%(action_add_lines)d" string="Anadir lineas"
+                               type="action" attrs="{'invisible':[('state','=','done')]}" icon="gtk-find"/>
+                </button>
+        </field>
+    </record>
+
+</data>
+</openerp>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--
+        Partners Extension
+        -->
+
+        <record id="view_acp_company_importacion" model="ir.ui.view">
+            <field name="name">acp.company.importacion</field>
+            <field name="model">res.company</field>
+            <field name="priority">2</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <notebook  colspan="4" position="inside" >
+                  <page String="Importacion1">
+                      <group>
+                         <button name="import_asientos" string="importar asientos" type="object"/> 
+                      </group>
+                  </page>
+                </notebook>
+            </field>
+        </record> 
+ 
+    </data>    
+</openerp>

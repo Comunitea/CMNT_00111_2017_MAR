@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<etikettseite>
+    <produktetikett type="fields" name="id">
+        
+        <product type="field" name="product_tmpl_id.name"/>
+        <price type="field" name="list_price"/>
+        <ean13 type="field" name="ean13"/>
+        <pname type="field" name="product_tmpl_id.name"/>        
+        <precio type="field" name="precio_incl_txt"/>        
+        <precio_antes type="field" name="precio_antes_incl_txt"/>          
+        <precio_antes_label type="field" name="precio_antes_incl_txt_label"/>          
+        
+        <talla type="field" name="talla"/>        
+        <color type="field" name="color"/>                        
+        <marca_id type="field" name="marca_id.name"/>    
+        <default_code type="field" name="default_code"/>
+        <default_code_template type="field" name="product_tmpl_id.default_code"/>
+        <currency type="field" name="company_id.currency_id.name"/>
+    </produktetikett>
+</etikettseite>
+

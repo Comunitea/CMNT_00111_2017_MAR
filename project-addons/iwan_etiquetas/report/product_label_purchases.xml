@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<etikettseite>
+    <order type="fields" name="id">
+
+
+     <lineas>
+        <linea type="zoom" name="order_line">
+            <product_line> <!-- type="fields" name="product_id"-->
+               <cantidad type="field" name="product_qty" />
+               <product type="field" name="product_id.product_tmpl_id.name"/>
+               <price type="field" name="product_id.list_price"/>
+               <ean13 type="field" name="product_id.ean13"/>
+               <pname type="field" name="product_id.product_tmpl_id.name"/>        
+               <precio type="field" name="product_id.precio_incl_txt"/>        
+               <precio_antes type="field" name="product_id.precio_antes_incl_txt"/>          
+               <precio_antes_label type="field" name="product_id.precio_antes_incl_txt_label"/>          
+               <talla type="field" name="product_id.talla"/>        
+               <color type="field" name="product_id.color"/>                        
+               <marca_id type="field" name="product_id.marca_id.name"/>    
+               <default_code type="field" name="product_id.default_code"/>
+               <default_code_template type="field" name="product_id.product_tmpl_id.default_code"/>
+               <currency type="field" name="product_id.company_id.currency_id.name"/>
+
+            </product_line>
+         </linea>
+       </lineas>
+    </order>
+</etikettseite>
+

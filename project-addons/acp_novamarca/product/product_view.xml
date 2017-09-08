@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+    <!--
+         SECUENCIA PARA PLANTILLA DE PRODUCTOS
+    -->
+    <record id="seq_type_product_template" model="ir.sequence.type">
+      <field name="name">Plantilla de Producto</field>
+      <field name="code">product.template</field>
+    </record>
+    <record id="seq_product_template" model="ir.sequence">
+      <field name="name">Plantilla de Producto</field>
+      <field name="code">product.template</field>
+      <field name="prefix">24</field>
+      <field name="padding">5</field>
+      <field name="company_id" eval="False" />
+    </record>
+  </data>
+  <data>
+    <!--
+         VISTA PARA PLANTILLA DE PRODUCTOS
+    -->
+    <record id="acp_novamarca_product_variant_multi_product_template_form_view" model="ir.ui.view">
+      <field name="name">acp_novamarca.product.variant_multi.product.template.form.view</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product_variant_multi.product_variant_multi_product_template_form_view" />
+      <field name="arch" type="xml">
+        <field name="variant_ids" string="Variants" nolabel="1" colspan="1" position="replace">
+          <field name="variant_ids" string="Variants" nolabel="1" colspan="1">
+            <tree string="Variants">
+              <field name="default_code" />
+              <field name="name" />
+              <field name="ean13" />
+              <field name="qty_available" />
+              <button name="%(stock.action_view_change_product_quantity)d" string="update" type="action" class="oe_link" />
+              <field name="variants" string="Dimension Values" />
+            </tree>
+          </field>
+        </field>
+      </field>
+    </record>
+    <record id="acp_novamarca_product_template_form_view" model="ir.ui.view">
+      <field name="name">acp_novamarca.product.product.template.form.view</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_form_view" />
+      <field name="arch" type="xml">
+        <field name="active" position="after">
+          <field name="marca_id" readonly="0"/>          
+        </field>
+        <field name="list_price" position="after">
+          <field name="precio_incl" readonly="1" />
+          <field name="precio_antes" />
+          <field name="precio_antes_incl" readonly="1" />
+        </field>
+      </field>
+    </record>
+    <record id="acp_novamarca_product_template_only_form_view" model="ir.ui.view">
+      <field name="name">acp_novamarca.product.product.template.only.form.view</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_only_form_view" />
+      <field name="arch" type="xml">
+          <field name="default_code" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}" position="replace">
+          <!-- <field name="default_code" attrs="{'readonly': [('product_variant_count', '&gt;', 1)]}" />          -->
+           <field name="default_code"  />         
+        </field>
+      </field>
+    </record>    
+
+    <!--
+         VISTA PARA VARIANTES DE PRODUCTOS
+    -->
+    <record id="acp_novamarca_product_normal_form_view" model="ir.ui.view">
+      <field name="name">acp_novamarca.product.product.normal.form.view</field>
+      <field name="model">product.product</field>
+      <field name="inherit_id" ref="product.product_normal_form_view" />
+      <field name="sequence">30</field>
+      <field name="arch" type="xml">
+        <field name="active" position="after">
+          <field name="dimension_value_ids" widget="many2many_tags" readonly="1"/>
+          <field name="talla" readonly="1"/>
+          <field name="color" readonly="1"/>
+        </field>
+        <field name="lst_price" position="after">
+          <field name="precio_incl" readonly="1" />
+        </field>
+      </field>
+    </record>
+    <!--
+         VISTA PARA DIMENSIONES DE VARIANTES DE PRODUCTOS
+    -->
+    <record id="acp_novamarca_product_variant_multi_dimension_type_tree" model="ir.ui.view">
+      <field name="name">acp_novamarca.variant.multi.dimension.type.tree</field>
+      <field name="model">product.variant.dimension.type</field>
+      <field name="inherit_id" ref="product_variant_multi.product_variant_multi_dimension_type_tree" />
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="tipo" />
+        </field>
+      </field>
+    </record>
+    <record id="acp_novamarca_product_variant_multi_dimension_type_form" model="ir.ui.view">
+      <field name="name">acp_novamarca.variant.multi.dimension.type.form</field>
+      <field name="model">product.variant.dimension.type</field>
+      <field name="inherit_id" ref="product_variant_multi.product_variant_multi_dimension_type_form" />
+      <field name="arch" type="xml">
+        <field name="description" position="after">
+          <field name="tipo" />
+        </field>
+      </field>
+    </record>
+  </data>
+</openerp>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <template id="report_receipt_cupon">
+      <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+          <div class="page">
+            <div class="row">
+              <div class="col-xs-12">
+                <h4 align="center">DEPORTES NOVAMARACANA</h4>
+                <div t-field="o.partner_id" t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}' />
+                <span t-field="o.session_id.config_id.direccion_tienda" />
+                <br />
+                <span t-field="o.user_id.company_id.name" />
+                <br />
+                <span>B-91956524</span>
+                <br />
+                <t t-if="o.session_id.config_id.direccion_tienda">
+                  <t t-esc="o.session_id.config_id.direccion_tienda" />
+                  <br />
+                </t>
+                <t t-if="o.session_id.config_id.direccion_tienda2">
+                  <t t-esc="o.session_id.config_id.direccion_tienda2" />
+                  <br />
+                </t>
+                <t t-if="o.session_id.config_id.direccion_tienda3">
+                  <t t-esc="o.session_id.config_id.direccion_tienda3" />
+                  <br />
+                </t>
+                <t t-if="o.session_id.config_id.direccion_tienda4">
+                  <t t-esc="o.session_id.config_id.direccion_tienda4" />
+                  <br />
+                </t>
+                <div align="center">
+                  <h5 align="center">CUPON DESCUENTO:</h5>
+                  <span t-field="o.coupon_id.coupon_code" />
+                </div>
+                <br />
+              <h1 align="center">
+                <img align="center" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.coupon_id.coupon_code, 600, 100)" style="width:300px;height:50px" />
+              </h1>                
+                Fecha:
+                <span t-field="o.date_order" />
+                <br />
+              </div>
+            </div>
+            <div class="row" />
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th>Descripcion</th>
+                  <th>Cantidad</th>
+                  <th>Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr t-foreach="o.lines" t-as="line">
+                  <td>
+                    <span t-field="line.product_id" />
+                  </td>
+                  <td>
+                    <span t-field="line.qty" />
+                  </td> 
+                  <td>
+                    <span t-field="line.price_subtotal_incl" /> €
+                  </td>                                   
+                </tr>
+              </tbody>
+            </table>
+            <div align="center">
+              TOTAL CUPON:
+              <br />
+              <b>
+                <span t-field="o.coupon_id.coupon_value_incl" /> €
+              </b>
+              <br />
+              <br />
+            </div>
+                  <span t-field="o.coupon_id.note" />
+                  <br />            
+            Vendedor:
+            <span t-field="o.user_id" />
+            <br />
+            GRACIAS POR SU VISITA.
+            <br />
+            PARA CUALQUIER RECLAMACION O CANJE, TIENE UN PLAZO DE 15 DIAS PARA EJERCITAR EL DERECHO A DEVOLUCION.
+            <br />
+            NO SE DEVOLVERA EN EFECTIVO.
+            <br />
+            SE CANJEARA POR OTRO ARTICULO O UN VALE.
+          </div>
+        </t>
+      </t>
+    </template>
+  </data>
+</openerp>

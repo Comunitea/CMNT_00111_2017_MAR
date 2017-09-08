@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+	  
+
+	  
+    <report id="garage_product_label" model="product.product" name="garage.product.label" 
+    string="Imprimir Etiquetas Maracana" xml="acp_label/report/product_label.xml" xsl="acp_label/report/product_label.xsl" />
+    <!-- print labels from product form view -->
+    
+    <record model="ir.actions.report.xml" id="action_print_label">
+      <field name="model">product.product</field>
+      <field name="report_name">garage.product.label</field>
+      <field name="name">Etikett</field>
+    </record>
+    
+    <record model="ir.ui.view" id="product_normal_form_view">
+      <field name="name">garage_product_normal_form_view</field>
+      <field name="model">product.product</field>
+      <field name="inherit_id" ref="product.product_normal_form_view" />
+      <field name="arch" type="xml">
+        <xpath expr="//div[@name='buttons']" position="inside">
+          <button string="Imprimir Etiquetas" name="%(action_print_label)d" type="action" />
+        </xpath>
+      </field>
+    </record>
+  </data>
+</openerp>

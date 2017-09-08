@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="view_acp_novamarca_pos_config_form">
+      <field name="name">view_acp_novamarca.view.pos.config.form</field>
+      <field name="model">pos.config</field>
+      <field name="type">form</field>
+      <field name="inherit_id" ref="point_of_sale.view_pos_config_form" />
+      <field name="arch" type="xml">
+        <xpath expr="//form/sheet/group" position="after">
+          <group>
+            <group string="Dirección">
+              <field name="direccion_tienda" />
+              <field name="direccion_tienda2" />
+              <field name="direccion_tienda3" />
+              <field name="direccion_tienda4" />
+            </group>
+            <group string="Cuentas">
+              <field name="account_bank_id" />
+              <field name="account_cash_id" />
+              <field name="account_cash_contr_id" />
+              <field name="account_tax_id" />
+              <field name="account_mer_id" />
+              <field name="account_vale_id" />
+              <field name="account_vale_contr_id" />              
+            </group>
+          </group>
+        </xpath>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="view_acp_novamarca_view_pos_session_form">
+      <field name="name">view_acp_novamarca.pos.session.form</field>
+      <field name="model">pos.session</field>
+      <field name="type">form</field>
+      <field name="inherit_id" ref="point_of_sale.view_pos_session_form" />
+      <field name="arch" type="xml">
+        <!--<button name="close" position="after" >
+          <button name="crea_asiento" type="object" string="Crear apunte" attrs="{'invisible': [('move_id','!=',False)]}"/>
+        </button>
+        -->
+        <field name="stop_at" position="after">
+          <field name="move_id" readonly="1" />
+        </field>
+      </field>
+    </record>
+    
+    <record model="ir.ui.view" id="view_acp_novamarca_pos_coupons_form">
+      <field name="name">view_acp_novamarca.pos_coupons_form</field>
+      <field name="model">pos.coupons</field>
+      <field name="type">form</field>
+      <field name="inherit_id" ref="pos_coupons.pos_coupons_form" />
+      <field name="arch" type="xml">
+
+        <field name="coupon_value" position="after">
+          <field name="coupon_value_incl" readonly="1" />
+        </field>
+      </field>
+    </record>
+        
+    
+  </data>
+</openerp>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+	  
+
+	  
+    <report id="garage_product_label_purchases" model="purchase.order" name="garage.product.label.purchases" 
+      string="Imprimir Etiquetas Maracana" xml="iwan_etiquetas/report/product_label_purchases.xml" xsl="iwan_etiquetas/report/product_label_purchases.xsl" />
+      <!-- print labels from product form view -->
+    
+    <record model="ir.actions.report.xml" id="action_print_label">
+      <field name="model">purchase.order</field>
+      <field name="report_name">garage.product.label.purchases</field>
+      <field name="name">EtikettPurchases</field>
+    </record>
+    
+    <!-- record model="ir.ui.view" id="purchase.order.form.iwan">
+      <field name="name">purchase.report_purchaseorder_labels</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.order.form" />
+      <field name="arch" type="xml">
+        <xpath expr="//div[@name='buttons']" position="inside">
+          <button string="Imprimir Etiquetas Maracana" name="665" type="action" />
+        </xpath>
+      </field>
+    </record -->
+  </data>
+</openerp>

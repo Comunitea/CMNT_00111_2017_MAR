@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<openerp>
+  <data>
+    <report id="action_acp_novamarca_report_pos_receipt" string="Imprimir ticket regalo" model="pos.order" report_type="qweb-pdf" name="acp_novamarca.report_receipt_regalo" file="acp_novamarca.report_receipt_regalo" />
+    <record id="action_acp_novamarca_report_pos_receipt" model="ir.actions.report.xml">
+      <field name="paperformat_id" ref="point_of_sale.paperformat_posreceipt" />
+    </record>
+    <report id="action_acp_novamarca_report_pos_coupon" string="Imprimir Cupon" model="pos.order" report_type="qweb-pdf" name="acp_novamarca.report_receipt_cupon" file="acp_novamarca.report_receipt_cupon" />
+    <record id="action_acp_novamarca_report_pos_coupon" model="ir.actions.report.xml">
+      <field name="paperformat_id" ref="point_of_sale.paperformat_posreceipt" />
+    </record>
+    <record model="ir.ui.view" id="view_acp_novamarca_pos_form_receipt">
+      <field name="name">view_acp_novamarca.pos.form.receipt</field>
+      <field name="model">pos.order</field>
+      <field name="type">form</field>
+      <field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
+      <field name="arch" type="xml">
+        <button string="Reprint" type="action" states="paid,done,invoiced" position="after">
+          <button name="%(action_acp_novamarca_report_pos_receipt)d" string="Imprimir ticket regalo" attrs="{'invisible':[('refund_type','=','cupon')]}" type="action" />
+          <button name="%(action_acp_novamarca_report_pos_coupon)d" string="Imprimir Cupon" attrs="{'invisible':['|',('refund_type','=','normal'),('coupon_id','=',False)]}" type="action" />
+        </button>
+        <button string="Payment" position="replace">
+          <button name="%(point_of_sale.action_pos_payment)d" string="Payment" class="oe_highlight" type="action" attrs="{'invisible':['|',('refund_type','=','cupon'),('state','!=','draft')]}" context="{'pos_session_id' : session_id}" />
+          <button name="action_paid2" string="Confirmar" states="draft" class="oe_highlight" type="object" attrs="{'invisible':['|',('refund_type','=','normal'),('state','!=','draft')]}" />
+          <button name="refund2" string="Devolver con Cupon Descuento" type="object" attrs="{'invisible':[('state','=','draft')]}" />
+        </button>
+        <field name="session_id" position="after">
+          <field name="refund_type" invisible="1" />
+          <field name="coupon_id" invisible="1" />          
+          
+        </field>
+      </field>
+    </record>
+  </data>
+</openerp>
